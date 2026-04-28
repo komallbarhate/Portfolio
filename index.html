@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Komal Barhate | Web Developer Portfolio</title>
+  <meta name="description" content="Personal portfolio website for Komal Barhate, a web developer specializing in polished, accessible, high-performing digital products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #16191f;
+      --muted: #626b7a;
+      --paper: #f7f8f3;
+      --surface: #ffffff;
+      --line: #dfe5df;
+      --teal: #0f766e;
+      --coral: #e25d4f;
+      --gold: #c69214;
+      --blue: #304ffe;
+      --shadow: 0 24px 80px rgba(22, 25, 31, 0.12);
+      --radius: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(22, 25, 31, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(22, 25, 31, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 64px 64px;
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(247, 248, 243, 0.88);
+      border-color: rgba(22, 25, 31, 0.1);
+      box-shadow: 0 10px 35px rgba(22, 25, 31, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      width: min(1160px, calc(100% - 40px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 50%;
+      font-size: 0.82rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--ink);
+      background: rgba(15, 118, 110, 0.1);
+      outline: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+      border-radius: 999px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle.open span {
+      opacity: 0;
+    }
+
+    .menu-toggle.open::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-toggle.open::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 124px 0 72px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.72fr);
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2.55rem, 5.6vw, 5.2rem);
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(2.15rem, 4vw, 4rem);
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2vw, 1.28rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--ink);
+      box-shadow: 0 14px 34px rgba(22, 25, 31, 0.18);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(22, 25, 31, 0.16);
+      outline: none;
+    }
+
+    .hero-photo {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-photo img {
+      width: min(100%, 390px);
+      height: auto;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      filter: saturate(0.92) contrast(1.02);
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .stat {
+      min-height: 112px;
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.5fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 44px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .about-band {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .about-band .eyebrow,
+    .about-band .section-head p {
+      color: #9ed8d2;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .profile-panel {
+      position: sticky;
+      top: 110px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-panel img {
+      width: 100%;
+      aspect-ratio: 5 / 4;
+      object-fit: cover;
+    }
+
+    .profile-panel div {
+      padding: 24px;
+    }
+
+    .profile-panel p {
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .timeline-item time,
+    .timeline-item .label {
+      color: #9ed8d2;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item p {
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card,
+    .project-card,
+    .achievement {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 14px 44px rgba(22, 25, 31, 0.06);
+    }
+
+    .skill-card {
+      min-height: 190px;
+      padding: 22px;
+    }
+
+    .skill-card .tag {
+      width: 42px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .tag.teal { background: var(--teal); }
+    .tag.coral { background: var(--coral); }
+    .tag.gold { background: var(--gold); }
+    .tag.blue { background: var(--blue); }
+
+    .skill-card p,
+    .project-card p,
+    .achievement p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .projects {
+      background: #edf5f2;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      overflow: hidden;
+    }
+
+    .project-visual {
+      height: 220px;
+      display: grid;
+      align-content: end;
+      padding: 20px;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .project-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(22, 25, 31, 0.08), rgba(22, 25, 31, 0.72));
+    }
+
+    .project-visual span {
+      position: relative;
+      width: max-content;
+      max-width: 100%;
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(22, 25, 31, 0.42);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .project-card .content {
+      padding: 24px;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tech-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--ink);
+      background: #eef1ec;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .project-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 22px;
+      padding: 0 14px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-link:hover,
+    .project-link:focus-visible {
+      color: #fff;
+      background: var(--ink);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .accomplishments-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .feature-metric {
+      min-height: 100%;
+      padding: 34px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--teal);
+    }
+
+    .feature-metric strong {
+      display: block;
+      font-size: clamp(3.2rem, 7vw, 5.2rem);
+      font-weight: 800;
+      line-height: 0.9;
+    }
+
+    .feature-metric p {
+      max-width: 360px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .achievement-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .achievement {
+      padding: 24px;
+    }
+
+    .contact {
+      padding-bottom: 48px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.55fr);
+      gap: 40px;
+      align-items: center;
+      padding: 46px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel p {
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .section-head,
+      .accomplishments-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-photo {
+        max-width: 480px;
+      }
+
+      .profile-panel {
+        position: static;
+      }
+
+      .skills-grid,
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 68px;
+        width: min(100% - 28px, 1160px);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 68px 14px auto;
+        display: grid;
+        gap: 4px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        justify-content: center;
+        border-radius: var(--radius);
+      }
+
+      .wrap {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        padding-top: 102px;
+      }
+
+      .hero-grid {
+        gap: 38px;
+      }
+
+      h1 {
+        font-size: clamp(2.3rem, 11vw, 3.6rem);
+      }
+
+      .stat-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .skills-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Komal Barhate home">
+        <span class="brand-mark">KB</span>
+        <span>Komal Barhate</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#wins">Wins</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Front-end engineer and product-minded builder</p>
+          <h1>Building clean web projects with code, creativity, and curiosity.</h1>
+          <p class="hero-copy">
+            I am Komal Barhate, a Computer Engineering student specializing in Data Science,
+            currently interning at Prodigy InfoTech as a Web Development Intern.
+          </p>
+          <div class="actions" aria-label="Portfolio actions">
+            <a class="button primary" href="#projects">View Projects</a>
+            <a class="button secondary" href="#contact">Let's Talk</a>
+            <a class="button secondary" href="assets/Komal_Barhate_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          </div>
+          <div class="stat-strip" aria-label="Professional highlights">
+            <div class="stat">
+              <strong>1+</strong>
+              <span>Year learning and building modern web projects</span>
+            </div>
+            <div class="stat">
+              <strong>7</strong>
+              <span>Public GitHub repositories published</span>
+            </div>
+            <div class="stat">
+              <strong>4</strong>
+              <span>Main technologies across my projects</span>
+            </div>
+          </div>
+        </div>
+        <figure class="hero-photo" aria-label="Professional portrait of Komal Barhate">
+          <img src="assets/profile-photo.jpeg" alt="Portrait photo for Komal Barhate's portfolio" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section about-band" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">About Me</p>
+            <h2>Curious by default, precise when it counts.</h2>
+          </div>
+          <p>
+            I am a student developer from Jalgaon, Maharashtra, building web development,
+            Python, and data-focused projects while growing through hands-on internships and coursework.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <aside class="profile-panel">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85" alt="Desk with laptop, notebooks, and web design sketches" />
+            <div>
+          <h3>Background</h3>
+              <p>
+                Based in Jalgaon, Maharashtra. Student at Vidyavardhini's College of
+                Engineering and Technology, Vasai West.
+              </p>
+            </div>
+          </aside>
+
+          <div class="timeline" aria-label="Education and professional experience">
+            <article class="timeline-item">
+              <time>2024 - 2028</time>
+              <div>
+                <h3>B.Tech in Computer Engineering (Data Science)</h3>
+                <p>
+                  Pursuing engineering at Vidyavardhini's College of Engineering and
+                  Technology, Vasai West.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <time>2026 - Present</time>
+              <div>
+                <h3>Web Development Intern, Prodigy InfoTech</h3>
+                <p>
+                  Building internship projects focused on responsive pages, JavaScript
+                  interactions, web utilities, and clean UI implementation.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <time>2024</time>
+              <div>
+                <h3>12th Passout - 66.17%</h3>
+                <p>
+                  Completed 12th from Maharashtra Junior College of Engineering and
+                  Technology, Savedi.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <time>2022</time>
+              <div>
+                <h3>10th Passout - 81.60%</h3>
+                <p>
+                  Completed 10th from St. Teresa Convent School, Jalgaon.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Skills</p>
+            <h2>Full-stack fluency with a front-end heartbeat.</h2>
+          </div>
+          <p>
+            I am building a strong foundation in web development, JavaScript, Python,
+            responsive UI, and project-based problem solving.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <span class="tag teal">UI</span>
+            <h3>Interface Development</h3>
+            <p>Clean page sections, responsive layouts, navigation menus, cards, and user-friendly visual structure.</p>
+          </article>
+          <article class="skill-card">
+            <span class="tag coral">JS</span>
+            <h3>Modern JavaScript</h3>
+            <p>Interactive browser features, game logic, timers, scoreboards, DOM updates, and smooth UI behavior.</p>
+          </article>
+          <article class="skill-card">
+            <span class="tag gold">PY</span>
+            <h3>Python</h3>
+            <p>Python projects for image tamper detection, machine learning experiments, Flask apps, and data workflows.</p>
+          </article>
+          <article class="skill-card">
+            <span class="tag blue">FE</span>
+            <h3>Front-end Development</h3>
+            <p>HTML, CSS, responsive design, landing pages, dashboards, project pages, and polished web interfaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Selected Projects</p>
+            <h2>Useful, polished work built for real users.</h2>
+          </div>
+          <p>
+            These projects represent the way I like to work: crisp interfaces, strong technical foundations,
+            and measurable business outcomes.
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=85');">
+              <span>JavaScript Game</span>
+            </div>
+            <div class="content">
+              <h3>PRODIGY_WD_03</h3>
+              <p>Interactive Tic-Tac-Toe game built with HTML, CSS, and JavaScript, including an unbeatable Minimax AI, animated win detection, and a live scoreboard.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/PRODIGY_WD_03" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85');">
+              <span>Image Forensics</span>
+            </div>
+            <div class="content">
+              <h3>tamper-detect</h3>
+              <p>Python project for detecting suspicious edits in digital photos, focused on practical image analysis and tamper detection workflows.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>Python</li>
+                <li>Image Analysis</li>
+                <li>Detection</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/tamper-detect" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85');">
+              <span>Web Utility</span>
+            </div>
+            <div class="content">
+              <h3>PRODIGY_WD_02</h3>
+              <p>Minimal stopwatch web app with lap tracking and a progress ring animation, built as a clean zero-dependency browser experience.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/PRODIGY_WD_02" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85');">
+              <span>Landing Page</span>
+            </div>
+            <div class="content">
+              <h3>PRODIGY_WD_01</h3>
+              <p>Responsive landing page featuring an interactive navigation menu and polished layout behavior across screen sizes.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Responsive UI</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/PRODIGY_WD_01" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85');">
+              <span>Analytics Dashboard</span>
+            </div>
+            <div class="content">
+              <h3>Sales-Analyzer</h3>
+              <p>Modern sales analytics dashboard with multiple chart types, custom thresholds, and support for both Kaggle data and a live public API.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>TypeScript</li>
+                <li>Charts</li>
+                <li>API Data</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/Sales-Analyzer" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=85');">
+              <span>Machine Learning</span>
+            </div>
+            <div class="content">
+              <h3>scifi-vitals-anomaly-detection</h3>
+              <p>Machine learning project for ICU vital-sign anomaly detection using Python and scikit-learn.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>Python</li>
+                <li>scikit-learn</li>
+                <li>ML</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/scifi-vitals-anomaly-detection" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" style="background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=85');">
+              <span>Hospital Management</span>
+            </div>
+            <div class="content">
+              <h3>Medease</h3>
+              <p>Full-stack Hospital OPD Management System built with Python Flask, featuring appointment booking, live queue management, UPI QR payments, admin dashboard, and an AI chatbot.</p>
+              <ul class="tech-list" aria-label="Technologies used">
+                <li>HTML</li>
+                <li>Flask</li>
+                <li>Chatbot</li>
+              </ul>
+              <a class="project-link" href="https://github.com/komallbarhate/Medease" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="wins">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Accomplishments</p>
+            <h2>Impact that shows up in the product.</h2>
+          </div>
+          <p>
+            Highlights from my GitHub projects and internship work show practical features across web apps,
+            analytics, healthcare systems, and machine learning experiments.
+          </p>
+        </div>
+        <div class="accomplishments-grid">
+          <div class="feature-metric">
+            <strong>7</strong>
+            <p>Public repositories covering web development, Python, machine learning, analytics, and Flask-based projects.</p>
+          </div>
+          <div class="achievement-list">
+            <article class="achievement">
+              <h3>Interactive Tic-Tac-Toe</h3>
+              <p>Built a JavaScript game with Minimax AI, animated win detection, dark glassmorphism UI, and live scoreboard.</p>
+            </article>
+            <article class="achievement">
+              <h3>Sales Analytics Dashboard</h3>
+              <p>Created a dashboard with chart views, custom thresholds, and switchable Kaggle/API data sources.</p>
+            </article>
+            <article class="achievement">
+              <h3>MedEase Hospital System</h3>
+              <p>Developed OPD features including appointment booking, live queue management, UPI QR payment, admin dashboard, and MedBot.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Have a product worth sharpening?</h2>
+            <p>
+              I am available for front-end engineering, portfolio-ready product builds,
+              design-system work, and technical consulting for small teams.
+            </p>
+          </div>
+          <div class="contact-links" aria-label="Contact links">
+            <a href="mailto:barhate.komal12@gmail.com">Email <span>barhate.komal12@gmail.com</span></a>
+            <a href="https://www.linkedin.com/in/komal-barhate-649108338/" target="_blank" rel="noreferrer">LinkedIn <span>Profile</span></a>
+            <a href="https://github.com/komallbarhate" target="_blank" rel="noreferrer">GitHub <span>Code</span></a>
+            <a href="assets/Komal_Barhate_Resume.pdf" target="_blank" rel="noreferrer">Resume <span>PDF</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Komal Barhate.</div>
+  </footer>
+
+  <script>
+    const header = document.getElementById("siteHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    const updateHeader = () => {
+      header.classList.toggle("scrolled", window.scrollY > 12);
+    };
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.classList.toggle("open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.matches("a")) {
+        navLinks.classList.remove("open");
+        menuToggle.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  </script>
+</body>
+</html>
