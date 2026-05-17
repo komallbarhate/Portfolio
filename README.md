@@ -44,4 +44,4 @@ A personal portfolio website built using **HTML, CSS, and JavaScript** to showca
 
 **Komal Barhate**  
 Computer Engineering (Data Science) Student  
-Web Development Intern at Prodigy InfoTech  
+Vidyavardhini's College Of Engineering And Technology Vasai West.
